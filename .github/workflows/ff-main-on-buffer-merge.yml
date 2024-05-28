@@ -3,13 +3,15 @@ name: Fast Forward Staging to Main on Buffer PR Merge
 on:
   pull_request_target:
     types: [synchronize, opened, reopened]
+  pull_request:
+    types: [closed]
 
 jobs:
   check-fast-forward:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: 'main'
 
@@ -57,7 +59,7 @@ jobs:
     needs: check-fast-forward
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: 'buffer'
 
